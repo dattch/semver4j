@@ -357,11 +357,11 @@ public class Semver implements Comparable<Semver> {
      * @return the greatest difference
      */
     public VersionDiff diff(Semver version) {
-        if (!Objects.equals(this.major, version.getMajor())) return VersionDiff.MAJOR;
-        if (!Objects.equals(this.minor, version.getMinor())) return VersionDiff.MINOR;
-        if (!Objects.equals(this.patch, version.getPatch())) return VersionDiff.PATCH;
+        if (!equals(this.major, version.getMajor())) return VersionDiff.MAJOR;
+        if (!equals(this.minor, version.getMinor())) return VersionDiff.MINOR;
+        if (!equals(this.patch, version.getPatch())) return VersionDiff.PATCH;
         if (!areSameSuffixes(version.getSuffixTokens())) return VersionDiff.SUFFIX;
-        if (!Objects.equals(this.build, version.getBuild())) return VersionDiff.BUILD;
+        if (!equals(this.build, version.getBuild())) return VersionDiff.BUILD;
         return VersionDiff.NONE;
     }
 
@@ -373,6 +373,10 @@ public class Semver implements Comparable<Semver> {
             if (!this.suffixTokens[i].equals(suffixTokens[i])) return false;
         }
         return true;
+    }
+
+    private static boolean equals(Object a, Object b) {
+        return (a == b) || (a != null && a.equals(b));
     }
 
     public Semver toStrict() {

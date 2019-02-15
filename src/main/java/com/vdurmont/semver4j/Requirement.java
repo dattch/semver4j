@@ -516,6 +516,10 @@ public class Requirement {
         }
     }
 
+    private static boolean equals(Object a, Object b) {
+        return (a == b) || (a != null && a.equals(b));
+    }
+
     /**
      * Checks if the requirement is satisfied by a version.
      *
@@ -550,9 +554,9 @@ public class Requirement {
                                 }
                                 if (range.version.getSuffixTokens().length>0) {
                                     Semver allowed = range.version;
-                                    if (Objects.equals(version.getMajor(), allowed.getMajor()) &&
-                                            Objects.equals(version.getMinor(), allowed.getMinor()) &&
-                                            Objects.equals(version.getPatch(), allowed.getPatch())) {
+                                    if (equals(version.getMajor(), allowed.getMajor()) &&
+                                            equals(version.getMinor(), allowed.getMinor()) &&
+                                            equals(version.getPatch(), allowed.getPatch())) {
                                         return true;
                                     }
                                 }

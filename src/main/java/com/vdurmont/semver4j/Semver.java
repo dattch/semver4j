@@ -1,7 +1,5 @@
 package com.vdurmont.semver4j;
 
-import java.util.Objects;
-
 /**
  * Semver is a tool that provides useful methods to manipulate versions that follow the "semantic versioning" specification
  * (see http://semver.org)
